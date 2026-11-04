@@ -27,7 +27,7 @@
 Открой Claude Code в своём проекте и отправь:
 
 ```text
-Прочитай README репозитория https://github.com/Aar0nWalker/agent-rules и внедри правила
+Прочитай README репозитория https://github.com/Aar0nWalker/Agent-Rules и внедри правила
 в этот проект по разделу «Инструкция для агента».
 ```
 
@@ -150,7 +150,7 @@ flowchart TD
 
 ```bash
 SET=$(mktemp -d)
-git clone https://github.com/Aar0nWalker/agent-rules "$SET"
+git clone https://github.com/Aar0nWalker/Agent-Rules "$SET"
 git -C "$SET" rev-parse --short HEAD
 ```
 
