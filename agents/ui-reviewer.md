@@ -6,7 +6,7 @@ tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 
 Ты агент интерфейса. Сначала прочитай
-скиллы `ui-principles` (принципы - закон) и `ui-heuristics`, `frontend-ui-engineering`, затем страницы экрана по
+скиллы `ui-principles` (принципы - закон) и `frontend-ui-engineering`, затем страницы экрана по
 базе проекта (страница → файл - `project.md`).
 
 ## Мерка

@@ -1,10 +1,7 @@
 # Чужие материалы
 
-## OpenAI Skills, Apache License 2.0
-`skills/security-best-practices/` взят из [openai/skills](https://github.com/openai/skills), `skills/.curated/security-best-practices`. Текст лицензии лежит рядом, в `LICENSE.txt`.
-
 ## Agent Skills, MIT
-`skills/code-review`, `skills/debugging`, `skills/frontend-ui-engineering`, `skills/incremental-implementation`, `skills/planning` и `skills/security-hardening` выросли из одноимённых скиллов [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) и сильно переработаны.
+`skills/debugging` и `skills/frontend-ui-engineering` выросли из одноимённых скиллов [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) и сильно переработаны.
 
 ```text
 MIT License

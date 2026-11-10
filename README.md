@@ -8,7 +8,7 @@
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-правила-D97757)
 ![Правил](https://img.shields.io/badge/правил-10-2F81F7)
-![Скиллов](https://img.shields.io/badge/скиллов-14-2F81F7)
+![Скиллов](https://img.shields.io/badge/скиллов-6-2F81F7)
 ![Агентов](https://img.shields.io/badge/агентов-6-2F81F7)
 ![Лицензия](https://img.shields.io/badge/лицензия-MIT-3FB950)
 
@@ -38,8 +38,8 @@
 | Идея | Что это значит |
 |:---|:---|
 | **Корень, а не случай** | Любой баг это экземпляр класса. Чиним правило, которого не было, а не одну запись |
-| **Доказательство, а не «готово»** | Результат подтверждает ручной проход на тестовом стенде и вывод проверок, а не слова агента |
-| **Тесты только по команде** | Без команды владельца проекта тесты не пишутся и не запускаются, кроме тестов этапа |
+| **Доказательство, а не «готово»** | Результат подтверждают тесты, ревью и проход на тестовом стенде, а не слова агента |
+| **Тест на класс бага** | Исправленный баг закрывает тест, который до правки падает, а после проходит; тесты по риску, запускает главная сессия |
 | **Этап показывают до кода** | Сначала весь путь глазами пользователя и «да» владельца, потом код |
 | **Ревью по риску** | Деньги, доступ, промпты и удаление данных проверяет свежий контекст, а не автор |
 | **Простота** | Сначала вопрос «нужно ли это вообще», затем готовое из проекта и минимум кода |
@@ -63,7 +63,7 @@
 | [`working-mode`](rules/working-mode.md) | когда делать самому, когда спрашивать, как отчитываться |
 | [`root-cause`](rules/root-cause.md) | корень, а не случай; баг как класс; когда баг закрыт |
 | [`simplicity`](rules/simplicity.md) | лестница решения, короткий diff, без защит «на всякий случай» |
-| [`proof-and-tests`](rules/proof-and-tests.md) | доказательство результата, тесты только по команде |
+| [`proof-and-tests`](rules/proof-and-tests.md) | доказательство результата, тесты по риску и тест на класс бага |
 | [`review`](rules/review.md) | ревью по риску, приёмка, круги возвратов |
 | [`git`](rules/git.md) | ветки, деревья, слияние, история |
 | [`flags-rollout`](rules/flags-rollout.md) | флаги, тестовый стенд, прод |
@@ -79,19 +79,11 @@
 | Группа | Скилл | Когда |
 |:---|:---|:---|
 | Код | [`debugging`](skills/debugging/SKILL.md) | любой баг или сбой |
-| | [`code-review`](skills/code-review/SKILL.md) | перед выкатом, после правок агента |
-| | [`planning`](skills/planning/SKILL.md) | разбивка работы на задачи |
-| | [`incremental-implementation`](skills/incremental-implementation/SKILL.md) | правки малыми проверяемыми шагами |
-| | [`task-writing`](skills/task-writing/SKILL.md) | задача для исполнителя-человека |
 | Этапы | [`stage-development`](skills/stage-development/SKILL.md) | разработка и приёмка этапа |
-| Безопасность | [`security-hardening`](skills/security-hardening/SKILL.md) | авторизация, платежи, ключи, загрузки |
-| | [`security-best-practices`](skills/security-best-practices/SKILL.md) | ревью безопасности по языку и фреймворку, по прямой просьбе |
 | Промпты | [`prompt-review`](skills/prompt-review/SKILL.md) | правка промпта или его сборки |
 | Интерфейс | [`ui-principles`](skills/ui-principles/SKILL.md) | перед любой правкой интерфейса |
-| | [`ui-heuristics`](skills/ui-heuristics/SKILL.md) | финальная сверка экрана, жалоба «неудобно» |
-| | [`ui-design-references`](skills/ui-design-references/SKILL.md) | внешние образцы стиля и компонентов |
-| | [`frontend-ui-engineering`](skills/frontend-ui-engineering/SKILL.md) | стандарт окна, вёрстка, визуальная проверка |
-| | [`frontend-e2e`](skills/frontend-e2e/SKILL.md) | e2e, только по команде или как тесты этапа |
+| | [`frontend-ui-engineering`](skills/frontend-ui-engineering/SKILL.md) | стандарт окна, дизайн-проход, визуальная проверка |
+| | [`frontend-e2e`](skills/frontend-e2e/SKILL.md) | e2e с моками: регрессия и состояния, которых нет в готовых данных |
 
 </details>
 
@@ -101,9 +93,9 @@
 | Агент | Модель | Что делает |
 |:---|:---|:---|
 | [`coder`](agents/coder.md) | Sonnet, на сложном Opus | правки кода в своём дереве |
-| [`debugger`](agents/debugger.md) | Opus | ведёт баг целиком: диагноз, решения, фикс после «да» |
+| [`debugger`](agents/debugger.md) | Opus | ведёт баг целиком: диагноз, решения, фикс всего класса |
 | [`scout`](agents/scout.md) | Haiku | только широкая разведка, ничего не правит |
-| [`reviewer`](agents/reviewer.md) | Opus | ревью рискованного diff свежим контекстом |
+| [`reviewer`](agents/reviewer.md) | Sonnet | ревью рискованного diff свежим контекстом |
 | [`ui-reviewer`](agents/ui-reviewer.md) | Opus | экран глазами пользователя, скрины до и после |
 | [`qa-tester`](agents/qa-tester.md) | Opus | проходит продукт как человек, команда `/test` |
 
@@ -117,12 +109,12 @@
 flowchart LR
     A[Спецификация] --> B[Показ целиком<br/>и «да» владельца]
     B --> C[Аудит кода]
-    C --> D[Починка<br/>за флагом]
+    C --> D[Починка<br/>класса]
     D --> E[Тесты этапа]
     E --> F[Приёмка<br/>13 критериев]
     F -->|есть «нет»| D
-    F -->|остальные «да»| G[Проход владельца]
-    G --> H[Прод<br/>по его команде]
+    F -->|остальные «да»| G[Показ владельцу<br/>и «принимаю»]
+    G --> H[Прод<br/>по project.md]
 ```
 
 Подробно: [`stage-development`](skills/stage-development/SKILL.md).
@@ -204,8 +196,6 @@ cp -n "$SET"/templates/project.md .claude/
 - Для `qa-tester` и `ui-reviewer` браузерный инструмент, по умолчанию `playwright-cli`, запиши его в `project.md`.
 - Для `skills/frontend-ui-engineering/tools/screenshot.py`: `pip install playwright`.
 - Необязательно: [`rtk`](https://github.com/rtk-ai/rtk) сокращает вывод команд до того, как он попадёт в контекст.
-
-Скилл `security-best-practices` на английском, остальной набор на русском.
 
 ## 🛠 Первая работа после установки
 
